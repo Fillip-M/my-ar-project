@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Matrix Marker med Assets</title>
+    <title>Matrix Marker AR</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden">
-    <a-scene embedded arjs="sourceType: webcam;">
-      <!-- Forudindlæs modellen -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: true;" vr-mode-ui="enabled: false" renderer="logarithmicDepthBuffer: true;">
+      <!-- Preload model -->
       <a-assets>
-        <a-asset-item id="mymodel" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
+        <a-asset-item id="vulture" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
       </a-assets>
 
-      <!-- Matrix Marker med ID 14 -->
+      <!-- Matrix Marker ID 14 -->
       <a-marker type="barcode" value="14">
-        <a-entity gltf-model="#mymodel" scale="0.5 0.5 0.5" position="0 0 0" rotation="0 0 0"> </a-entity>
+        <a-entity gltf-model="#vulture" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"> </a-entity>
       </a-marker>
 
       <!-- Kamera -->
