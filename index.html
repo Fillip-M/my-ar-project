@@ -5,50 +5,78 @@
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.loaders.min.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden">
-    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
 
+    <style>
+      /* 🔘 Rund knap i midten */
+      #infoButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.6); /* Sort og lidt gennemsigtig */
+        color: white;
+        font-size: 24px;
+        border: none;
+        z-index: 10;
+        cursor: pointer;
+      }
+
+      /* 📦 Infoboks der glider ind fra højre */
+      #infoBox {
+        position: absolute;
+        top: 0;
+        right: -300px; /* Starter uden for skærmen */
+        width: 300px;
+        height: 100%;
+        background-color: black;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: right 0.5s ease;
+        z-index: 9;
+      }
+
+      /* 🚪 Når boksen er aktiv vises den */
+      #infoBox.active {
+        right: 0;
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0; overflow: hidden">
+    <!-- 🔘 Rund knap -->
+    <button id="infoButton" onclick="toggleInfo()">ℹ️</button>
+
+    <!-- 📦 Infoboks -->
+    <div id="infoBox">
+      <h2>👋 Velkommen</h2>
+      <p>Gruppens navn: Team Awesome</p>
+      <p>Projekt: Avatarer på AR-markers</p>
+      <p>Scan navneskilte for at se figurer!</p>
+    </div>
+
+    <!-- 🕶️ AR-scene -->
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
       <a-assets>
         <a-asset-item id="mymodel" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
       </a-assets>
 
       <a-marker type="barcode" value="14">
-        <a-entity glb-model="#mymodel" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"></a-entity>> </a-entity>
+        <a-entity gltf-model="#mymodel" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"></a-entity>
+        <a-text value="Elevens navn" position="0 0.2 0" align="center" color="white"></a-text>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
 
-      <!-- Knappen -->
-  <button onclick="toggleInfo()" style="position: absolute; top: 20px; left: 20px; z-index: 10;">ℹ️ Info</button>
-
-  <!-- Skjult tekst -->
-  <div id="infoBox" style="display: none; position: absolute; top: 60px; left: 20px; background: white; padding: 10px; z-index: 10;">
-    <p>👋 Velkommen til vores AR-projekt!</p>
-    <p>Gruppens navn: Team Awesome</p>
-    <p>Projekt: Visning af avatarer på elevskilte</p>
-  </div>
-
-  <!-- A-Frame scene -->
-  <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
-    <a-assets>
-      <a-asset-item id="mymodel" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
-    </a-assets>
-
-    <a-marker type="barcode" value="14">
-      <a-entity gltf-model="#mymodel" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"></a-entity>
-      <a-text value="Elevens navn" position="0 0.2 0" align="center" color="white"></a-text>
-    </a-marker>
-
-    <a-entity camera></a-entity>
-  </a-scene>
-
-  <script>
-    function toggleInfo() {
-      const box = document.getElementById("infoBox");
-      box.style.display = box.style.display === "none" ? "block" : "none";
-    }
-  </script>
+    <script>
+      function toggleInfo() {
+        const infoBox = document.getElementById('infoBox');
+        infoBox.classList.toggle('active');
+      }
+    </script>
   </body>
 </html>
