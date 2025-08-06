@@ -13,11 +13,42 @@
         <a-asset-item id="mymodel" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
       </a-assets>
 
-      <a-marker type="barcode" value="4x4_bch_13_5_5">
+      <a-marker type="barcode" value="14">
         <a-entity glb-model="#mymodel" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"></a-entity>> </a-entity>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
+
+      <!-- Knappen -->
+  <button onclick="toggleInfo()" style="position: absolute; top: 20px; left: 20px; z-index: 10;">ℹ️ Info</button>
+
+  <!-- Skjult tekst -->
+  <div id="infoBox" style="display: none; position: absolute; top: 60px; left: 20px; background: white; padding: 10px; z-index: 10;">
+    <p>👋 Velkommen til vores AR-projekt!</p>
+    <p>Gruppens navn: Team Awesome</p>
+    <p>Projekt: Visning af avatarer på elevskilte</p>
+  </div>
+
+  <!-- A-Frame scene -->
+  <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
+    <a-assets>
+      <a-asset-item id="mymodel" src="assets/models/vulture_stone_statue.glb"></a-asset-item>
+    </a-assets>
+
+    <a-marker type="barcode" value="14">
+      <a-entity gltf-model="#mymodel" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0"></a-entity>
+      <a-text value="Elevens navn" position="0 0.2 0" align="center" color="white"></a-text>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    function toggleInfo() {
+      const box = document.getElementById("infoBox");
+      box.style.display = box.style.display === "none" ? "block" : "none";
+    }
+  </script>
   </body>
 </html>
