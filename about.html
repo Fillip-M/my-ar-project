@@ -7,5 +7,28 @@
   </head>
   <body>
     <h1>hello world</h1>
+    <style>
+      #about-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        padding: 10px 15px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none; /* remove underline */
+        cursor: pointer;
+        display: inline-block;
+      }
+
+      #about-button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    </style>
+
+    <a href="index.html" id="about-button">back</a>
   </body>
 </html>
